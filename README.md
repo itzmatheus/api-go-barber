@@ -56,10 +56,10 @@ Now you can use REST API Client to test "**GoBarber**".
 
 ## Tools
 <ul>
-  <li>Express;</li>
-  <li>Sucrase;</li>
-  <li>Nodemon;</li>
-  <li>ESLint + Prettier + EditorConfig;</li>
+  <li>Express</li>
+  <li>Sucrase</li>
+  <li>Nodemon</li>
+  <li>ESLint + Prettier + EditorConfig</li>
   <li>Sequelize + Mongoose</li>
   <li>Sentry</li>
 </ul>
