@@ -38,7 +38,6 @@ After clone this repository and install prerequisites
     >`docker run --name mongobarber -p 27017:27017 -d -t mongo`
 - Create a file **`.env`** based on **`.env.example`** with all variables and their values;
 - Run **`yarn sequelize db:migrate`** to create db migrations;
-- Run **`yarn sequelize db:seed:all`** To criate seed;
 - Run **`yarn dev`** to start the project;
 - Run **`yarn queue`** in another terminal to start the jobs queue;
 
@@ -63,7 +62,3 @@ Now you can use REST API Client to test "**GoBarber**".
   <li>Sequelize + Mongoose</li>
   <li>Sentry</li>
 </ul>
-
-
-
-
