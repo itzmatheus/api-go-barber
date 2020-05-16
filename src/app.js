@@ -12,6 +12,8 @@ import './database';
 
 import sentryConfig from './config/sentry';
 
+const PREFIX_API_ROUTE = process.env.PREFIX_API_ROUTE || '';
+
 class App {
 
     constructor() {
@@ -38,7 +40,7 @@ class App {
     }
 
     routes () {
-        this.server.use(routes);
+        this.server.use(PREFIX_API_ROUTE, routes);
         this.server.use( Sentry.Handlers.errorHandler());
     }
 
