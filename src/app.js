@@ -34,7 +34,7 @@ class App {
         this.server.use(cors());
         this.server.use(express.json()); // Receber requests do tipo JSON
         this.server.use(
-            '/files',
+            '/barber/api/v1/files',
             express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
         );
     }
