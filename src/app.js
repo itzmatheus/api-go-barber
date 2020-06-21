@@ -15,46 +15,44 @@ import sentryConfig from './config/sentry';
 const PREFIX_API_ROUTE = process.env.PREFIX_API_ROUTE || '';
 
 class App {
+  constructor() {
+    this.server = express();
 
-    constructor() {
-        this.server = express();
-
-        if(process.env.NODE_ENV === 'development') {
-            sentryConfig = {}
-        }
-        Sentry.init(sentryConfig);
-        
-        this.middlewares();
-        this.routes();
-        this.exceptionHandler();
+    if (process.env.NODE_ENV === 'development') {
+      sentryConfig = {};
     }
+    Sentry.init(sentryConfig);
 
-    middlewares () {
-        this.server.use(Sentry.Handlers.requestHandler());
-        this.server.use(cors());
-        this.server.use(express.json()); // Receber requests do tipo JSON
-        this.server.use(
-            '/barber/api/v1/files',
-            express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
-        );
-    }
+    this.middlewares();
+    this.routes();
+    this.exceptionHandler();
+  }
 
-    routes () {
-        this.server.use(PREFIX_API_ROUTE, routes);
-        this.server.use( Sentry.Handlers.errorHandler());
-    }
+  middlewares() {
+    this.server.use(Sentry.Handlers.requestHandler());
+    this.server.use(cors());
+    this.server.use(express.json()); // Receber requests do tipo JSON
+    this.server.use(
+      `${PREFIX_API_ROUTE}/files`,
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
+  }
 
-    exceptionHandler() {
-        this.server.use(async (err, req, res, next) => {
-            if(process.env.NODE_ENV === 'development'){
-                const errors = await new Youch(err, req).toJSON();
-                return res.status(500).json(errors);
-            }
+  routes() {
+    this.server.use(PREFIX_API_ROUTE, routes);
+    this.server.use(Sentry.Handlers.errorHandler());
+  }
 
-            return res.status(500).json({ error: 'Internal server error' })
-        });
-    }
+  exceptionHandler() {
+    this.server.use(async (err, req, res, next) => {
+      if (process.env.NODE_ENV === 'development') {
+        const errors = await new Youch(err, req).toJSON();
+        return res.status(500).json(errors);
+      }
 
+      return res.status(500).json({ error: 'Internal server error' });
+    });
+  }
 }
 
 export default new App().server;
