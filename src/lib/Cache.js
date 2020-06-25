@@ -9,7 +9,7 @@ class Cache {
     });
   }
 
-  async set(key, value) {
+  set(key, value) {
     return this.redis.set(
       key,
       JSON.stringify(value),
