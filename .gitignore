@@ -1,6 +1,7 @@
 #Hide project files
 /tmp/uploads/*
 dist
+__tests__/database.sqlite
 
 # Logs
 logs

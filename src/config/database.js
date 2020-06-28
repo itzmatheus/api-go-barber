@@ -1,4 +1,4 @@
-require('dotenv/config');
+require('../bootstrap');
 
 module.exports = {
   dialect: process.env.DIALECT,
@@ -7,6 +7,8 @@ module.exports = {
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT,
+  storage: './__tests__/database.sqlite',
+  logging: false,
   define: {
     timestamps: true,
     underscored: true, // Sequelize ira criar tabelas no formato user_groups

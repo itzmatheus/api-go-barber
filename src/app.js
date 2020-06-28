@@ -1,5 +1,4 @@
-import 'dotenv/config';
-
+import './bootstrap';
 import express from 'express';
 import path from 'path';
 import * as Sentry from '@sentry/node';
